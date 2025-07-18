@@ -1,0 +1,955 @@
+/* Importar fontes do Google Fonts */
+/* Fredoka One para títulos maiores (bem fofinha) */
+/* Open Sans para corpo de texto (legível e limpa) */
+/* Kalam para algo mais "escrito à mão" (se for o caso, para detalhes ou hero text secundário) */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans:wght@300;400;600;700&family=Kalam:wght@300;400;700&display=swap');
+
+/* Variáveis CSS para cores e propriedades reutilizáveis */
+:root {
+    /* Novas Cores Baseadas na Imagem (Roxo suave e Azul Lavanda) */
+    --cor-fundo: #E6E6FA; /* Azul Lavanda claro para o fundo principal (background do body) */
+    --cor-primaria: #5A4A7A; /* Roxo escuro para texto principal e elementos fortes */
+    --cor-secundaria: #8A2BE2; /* Roxo vibrante para destaques e links */
+    --cor-acento: #DDA0DD; /* Lilás/Púrpura suave para acentos (botões, diamantes, barras de progresso) */
+    --cor-texto: #4A4A4A; /* Cinza escuro para textos secundários para boa legibilidade */
+    --cor-fundo-card: #FFFFFF; /* Branco puro para fundos de cartões/seções (contraste) */
+    --cor-bordas: #C0C0D9; /* Tom de cinza-azulado suave para bordas (combina com o fundo lavanda) */
+    --cor-barra-progresso-fundo: #F5F5FC; /* Um azul/cinza muito claro para o fundo das barras */
+    --cor-barra-progresso: #AA7EEA; /* Um roxo/lilás mais escuro e visível para o preenchimento das barras */
+
+    /* Variável RGB para uso com transparência no overlay (CORRIGIDO) */
+    --cor-secundaria-rgb: 138, 43, 226; /* RGB de #8A2BE2 */
+}
+
+/* ==================================== */
+/* Reset Básico e Configurações Globais */
+/* ==================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Inclui padding e borda na largura/altura do elemento */
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: var(--cor-texto);
+    background-color: var(--cor-fundo); /* O novo azul lavanda */
+    overflow-x: hidden; /* Evita scroll horizontal indesejado */
+}
+
+a {
+    text-decoration: none;
+    color: var(--cor-secundaria);
+    transition: color 0.3s ease; /* Transição suave para links */
+}
+
+a:hover {
+    color: var(--cor-acento);
+}
+
+ul {
+    list-style: none; /* Remove marcadores de lista padrão */
+}
+
+/* ==================================== */
+/* Header - Seção de Boas-Vindas (Hero) */
+/* ==================================== */
+/* Este estilo é aplicado ao hero da landing page (index.html) */
+.hero {
+    background-color: var(--cor-secundaria); /* Roxo vibrante */
+    height: 100vh; /* Ocupa a altura total da viewport */
+    display: flex; /* Torna-o um container flexível */
+    justify-content: center; /* Centraliza horizontalmente o conteúdo */
+    align-items: center; /* Centraliza verticalmente o conteúdo */
+    text-align: center; /* Centraliza o texto dentro de hero-content */
+    color: #fff;
+    position: relative;
+    overflow: hidden; /* Importante para clipar qualquer conteúdo que vaze */
+    animation: fadeIn 1.5s ease-out; /* Animação de entrada suave */
+}
+
+/* Estilo para o conteúdo dentro do Hero (título, descrição, botão) */
+.hero-content {
+    z-index: 1; /* Garante que o conteúdo esteja acima de outros elementos se houver */
+    position: relative; /* Permite z-index e posicionamento interno se necessário */
+    padding: 20px 40px; /* Aumentar um pouco o padding para dar mais espaço */
+    background-color: rgba(0,0,0,0.1); /* Um leve fundo para contraste */
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    display: flex; /* Torna o hero-content flexível para centralizar seus filhos */
+    flex-direction: column; /* Coloca os itens (h1, p, a) em coluna */
+    justify-content: center; /* Centraliza verticalmente os itens dentro dele */
+    align-items: center; /* Centraliza horizontalmente os itens dentro dele */
+    gap: 15px; /* Espaço entre os itens (h1, p, btn) */
+}
+
+.hero h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 5em;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px var(--cor-acento); /* Dando um efeito 3D fofo com o lilás */
+    animation: popIn 1s ease-out; /* Animação de "pipocar" */
+}
+
+.hero p {
+    font-family: 'Kalam', cursive;
+    font-size: 1.8em;
+    margin-bottom: 40px;
+    font-weight: 400;
+    color: #fff; /* Texto branco puro para contraste */
+}
+
+/* Animações de entrada para o hero */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.5); opacity: 0; }
+    80% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+/* Estilo do botão "Ver Portfólio" */
+.btn-scroll {
+    background-color: var(--cor-fundo); /* Azul lavanda para o botão */
+    color: var(--cor-primaria); /* Texto em roxo escuro */
+    padding: 15px 30px;
+    border-radius: 30px; /* Bem arredondado */
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-size: 1.2em;
+    border: 2px solid var(--cor-acento); /* Borda fofa com lilás */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.btn-scroll:hover {
+    background-color: var(--cor-acento); /* Lilás no hover */
+    color: #fff; /* Texto branco no hover */
+    transform: translateY(-3px); /* Leve levantamento */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    text-decoration: none;
+}
+
+/* ==================================== */
+/* Navegação (Navbar) - Apenas em portfolio.html */
+/* ==================================== */
+.navbar {
+    background-color: var(--cor-fundo-card); /* Branco puro */
+    padding: 18px 0;
+    text-align: center;
+    position: sticky; /* Fica fixo no topo ao rolar */
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-bottom: 1px solid var(--cor-bordas);
+    margin-top: 0px; /* Ajustado para não ter margem superior extra após o banner */
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links li {
+    margin: 0 25px;
+}
+
+.nav-links a {
+    color: var(--cor-primaria); /* Roxo escuro */
+    font-weight: 600;
+    font-size: 1.1em;
+    position: relative;
+}
+
+/* Efeito de sublinhado animado no hover da navegação */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--cor-acento); /* Lilás */
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* ==================================== */
+/* Hero Portfolio (Banner no Topo de portfolio.html) */
+/* ==================================== */
+.hero-portfolio {
+    width: 100%;
+    position: relative;
+    background-color: var(--cor-fundo-card); /* Fundo branco ou cor para o banner */
+    padding: 30px 20px; /* Padding interno para dar espaço ao logo */
+    margin-bottom: 20px;
+    overflow: hidden;
+    border-bottom-left-radius: 25px; /* Arredondamento na parte inferior */
+    border-bottom-right-radius: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    display: flex; /* Para centralizar o conteúdo (a imagem) */
+    justify-content: center;
+    align-items: center;
+    min-height: 120px; /* Altura mínima para o banner, ajuste se necessário */
+}
+
+.banner-capa {
+    width: 100%; /* Permite que o container ocupe a largura total */
+    text-align: center;
+}
+
+.banner-capa img {
+    max-width: 80%; /* **AJUSTE CRÍTICO AQUI:** Limita a largura máxima da imagem (80% da div.banner-capa) */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Remove espaço extra abaixo da imagem */
+    margin: 0 auto; /* Centraliza a imagem horizontalmente */
+    /* Opcional: Se a imagem tiver muito espaço em branco ou você quiser cortá-la */
+    /* object-fit: contain; /* Garante que a imagem inteira seja visível dentro do espaço */
+    /* object-fit: cover;  /* Corta a imagem para preencher o espaço (pode cortar o logo) */
+    /* width: auto; max-height: 180px; /* Ou defina uma altura máxima para o logo */
+}
+
+/* ==================================== */
+/* Layout Principal de Currículo (em portfolio.html) */
+/* ==================================== */
+.curriculum-layout {
+    display: flex; /* Torna o main um container flexível */
+    flex-wrap: wrap; /* Permite que as colunas quebrem para a próxima linha em telas pequenas */
+    gap: 30px; /* Espaço entre as colunas */
+    max-width: 95%; /* Ocupa quase toda a largura da página */
+    margin: 40px auto; /* Centraliza o layout principal na página, mantendo margens laterais com branco ovo */
+    padding: 20px; /* Padding interno para o layout geral */
+    background-color: var(--cor-fundo-card); /* Fundo branco para a "folha" do currículo */
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid var(--cor-bordas);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efeito de elevar na moldura principal */
+}
+
+/* Efeito de elevar no hover para a moldura principal do currículo */
+.curriculum-layout:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+
+.coluna-esquerda {
+    flex: 1; /* Permite que a coluna cresça */
+    min-width: 300px; /* Largura mínima para a coluna esquerda */
+    display: flex; /* Para empilhar as seções 'Sobre Mim' e 'Contato' */
+    flex-direction: column;
+    gap: 30px; /* Espaço entre as seções dentro desta coluna */
+}
+
+.coluna-direita {
+    flex: 2; /* Permite que a coluna direita ocupe mais espaço (duas vezes a esquerda) */
+    min-width: 450px; /* Largura mínima maior para a coluna direita para melhor distribuição */
+    display: flex; /* Para empilhar as seções 'Educação', 'Experiência' etc. */
+    flex-direction: column;
+    gap: 30px; /* Espaço entre as seções dentro desta coluna */
+}
+
+/* Ajustes para as section-container dentro do novo layout, para que pareçam blocos dentro da "folha" */
+.curriculum-layout .section-container {
+    margin: 0; /* Remove margens automáticas que o section-container tinha antes */
+    box-shadow: none; /* Remove a sombra individual para um visual mais integrado */
+    border: none; /* Remove a borda individual */
+    border-radius: 0; /* Remove o arredondamento individual */
+    padding: 0; /* Remova o padding aqui, ele será adicionado aos conteúdos internos */
+    background-color: transparent; /* Garante que o fundo do container seja transparente */
+}
+
+/* O padding e os estilos de "cartão" serão aplicados dentro dos conteúdos das seções */
+.curriculum-layout .sobre-mim-content,
+.curriculum-layout .educacao-experiencia-grid,
+.curriculum-layout .habilidades-grid,
+.curriculum-layout .idiomas-interesses-wrapper,
+.curriculum-layout .contato-info {
+    background-color: var(--cor-fundo-card); /* Branco para as caixas internas */
+    border: 1px solid var(--cor-bordas); /* Borda com tom de cinza-azulado */
+    border-radius: 15px; /* Arredondamento para as caixas internas */
+    padding: 30px; /* Padding interno para cada bloco */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Sombra suave para os blocos */
+    width: 100%; /* Garante que os blocos preencham a largura da coluna */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adicionado para o efeito de elevar no contato */
+}
+
+/* Efeito de elevar no hover para os blocos internos do currículo */
+.curriculum-layout .sobre-mim-content:hover,
+.curriculum-layout .educacao-experiencia-grid:hover,
+.curriculum-layout .habilidades-grid:hover,
+.curriculum-layout .idiomas-interesses-wrapper:hover,
+.curriculum-layout .contato-info:hover { /* Adicionado .contato-info:hover */
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+
+/* Garante que os títulos das seções dentro do layout tenham seu próprio espaço */
+.curriculum-layout .section-title {
+    margin-bottom: 25px; /* Menor margem para títulos de seção interna */
+    padding-top: 15px; /* Espaço antes do título, se necessário */
+    text-align: left; /* Alinha o título à esquerda dentro do bloco */
+    justify-content: flex-start; /* Alinha ícones e texto à esquerda */
+}
+
+
+/* ==================================== */
+/* Estilo para Títulos de Seção (com "diamante") */
+/* ==================================== */
+/* Este estilo é para os títulos gerais, como em #portfolio-artes e títulos dentro das colunas */
+.section-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2.8em;
+    margin-bottom: 50px; /* Margem padrão para títulos de seções principais */
+    color: var(--cor-primaria); /* Roxo escuro */
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza o título fora do curriculum-layout */
+    gap: 15px; /* Espaço entre o ícone e o texto */
+}
+
+/* Cria os ícones de "diamante" antes e depois do título */
+.section-title::before,
+.section-title::after {
+    content: '';
+    display: block;
+    width: 25px; /* Tamanho do "diamante" */
+    height: 25px;
+    background-color: var(--cor-acento); /* Lilás */
+    transform: rotate(45deg); /* Gira para parecer um diamante */
+    border-radius: 5px; /* Levemente arredondado */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+/* ==================================== */
+/* Seção Sobre Mim (conteúdo específico dentro do bloco) */
+/* ==================================== */
+.sobre-mim-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 30px; /* Reduzido o gap para se ajustar melhor na coluna */
+    justify-content: center;
+    /* Removido padding, border, box-shadow aqui, pois já estão no .curriculum-layout .sobre-mim-content */
+}
+
+.foto-artista {
+    position: relative;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.foto-artista img {
+    max-width: 280px; /* Ajustado para caber melhor na coluna */
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border: 6px solid var(--cor-acento); /* Borda com lilás */
+    transition: transform 0.3s ease;
+}
+
+.foto-artista img:hover {
+    transform: scale(1.02) rotate(2deg);
+}
+
+.cartao-identificacao {
+    background-color: var(--cor-fundo-card);
+    border: 2px solid var(--cor-bordas);
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-top: -30px;
+    display: inline-block;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    font-family: 'Kalam', cursive;
+    font-size: 1.1em;
+    color: var(--cor-primaria); /* Roxo escuro */
+    font-weight: 600;
+    white-space: nowrap; /* Evita que o texto quebre */
+}
+
+.cartao-identificacao p:first-child {
+    font-size: 1.3em;
+    margin-bottom: 5px;
+}
+
+.texto-sobre-mim {
+    flex: 1; /* Permite que o texto ocupe o espaço restante */
+    min-width: 250px; /* Garante que não fique muito espremido */
+    max-width: 100%; /* Adapta-se ao container pai */
+    background-color: #fcfcfc; /* Fundo quase branco */
+    padding: 25px; /* Padding interno */
+    border-radius: 20px;
+    border: 1px dashed var(--cor-acento); /* Borda tracejada fofa com lilás */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
+}
+
+.texto-sobre-mim p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    color: var(--cor-texto); /* Cinza escuro */
+}
+
+.info-adicional {
+    margin-top: 20px;
+    border-top: 1px dashed var(--cor-bordas); /* Borda com tom de cinza-azulado */
+    padding-top: 20px;
+}
+
+.info-adicional p {
+    margin-bottom: 8px;
+    font-weight: 400;
+    color: var(--cor-primaria); /* Roxo escuro */
+    font-size: 1.05em;
+}
+
+.info-adicional strong {
+    font-weight: 700;
+    color: var(--cor-secundaria); /* Roxo vibrante */
+}
+
+/* ==================================== */
+/* Educação e Experiência (conteúdo específico dentro do bloco) */
+/* ==================================== */
+.educacao-experiencia-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Colunas flexíveis */
+    gap: 20px; /* Espaço entre os itens de educação/experiência */
+    /* Removido padding, border, box-shadow aqui, pois já estão no .curriculum-layout .educacao-experiencia-grid */
+}
+
+.item-lista {
+    background-color: #fcfcfc; /* Fundo quase branco */
+    padding: 20px; /* Padding interno */
+    border-radius: 15px;
+    border: 1px solid var(--cor-bordas); /* Borda com tom de cinza-azulado */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transição individual para estes itens */
+}
+
+.item-lista:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.item-lista h3 {
+    font-family: 'Fredoka One', cursive;
+    color: var(--cor-secundaria); /* Roxo vibrante */
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+.item-lista p, .item-lista ul li {
+    font-size: 0.95em;
+    color: var(--cor-texto); /* Cinza escuro */
+    margin-bottom: 5px;
+}
+
+.item-lista ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+/* ==================================== */
+/* Habilidades (conteúdo específico dentro do bloco) */
+/* ==================================== */
+.habilidades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Colunas para habilidades */
+    gap: 15px; /* Espaço entre as habilidades */
+    /* Removido padding, border, box-shadow aqui, pois já estão no .curriculum-layout .habilidades-grid */
+}
+
+.habilidade-item {
+    background-color: #f9f9f9; /* Fundo um pouco mais escuro que o card */
+    padding: 15px; /* Padding interno */
+    border-radius: 15px;
+    border: 1px solid var(--cor-bordas); /* Borda com tom de cinza-azulado */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transição para o hover */
+}
+
+/* Efeito de elevar nos itens de habilidade */
+.habilidade-item:hover {
+    transform: translateY(-3px); /* Eleva um pouco menos que as seções maiores */
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1); /* Sombra mais acentuada no hover */
+}
+
+.habilidade-item span {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--cor-primaria); /* Roxo escuro */
+}
+
+.barra-progresso {
+    background-color: var(--cor-barra-progresso-fundo); /* Fundo da barra */
+    height: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.barra-progresso div { /* Esta é a div interna que mostra o progresso */
+    height: 100%;
+    background-color: var(--cor-barra-progresso); /* A cor vibrante do progresso */
+    border-radius: 6px;
+    transition: width 0.8s ease-out;
+    position: relative;
+    /* Certifique-se de que não há NENHUM 'width' aqui! Ele vem do HTML inline */
+}
+
+/* Efeito de brilho na barra de progresso */
+.barra-progresso div::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 20px;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 100%);
+    border-radius: 0 6px 6px 0;
+}
+
+/* ==================================== */
+/* Idiomas e Interesses (conteúdo específico dentro do bloco) */
+/* ==================================== */
+.idiomas-interesses-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espaço entre os blocos de Idiomas e Interesses */
+    justify-content: center;
+    /* Removido padding, border, box-shadow aqui, pois já estão no .curriculum-layout .idiomas-interesses-wrapper */
+}
+
+.idiomas-interesses-grupo {
+    flex: 1;
+    min-width: 250px; /* Ajuste o min-width */
+    background-color: transparent; /* Fundo transparente, o estilo vem do wrapper */
+    padding: 0;
+    border: none;
+    box-shadow: none;
+}
+
+/* Estilo para os títulos dentro de Idiomas/Interesses */
+.idiomas-interesses-grupo .section-title {
+    font-size: 1.8em; /* Tamanho menor para os títulos dentro do grupo */
+    margin-bottom: 15px; /* Reduzida a margem inferior */
+}
+
+.idiomas-interesses-grupo .section-title::before,
+.idiomas-interesses-grupo .section-title::after {
+    width: 15px; /* Diamantes menores */
+    height: 15px;
+}
+
+/* Estilo para o bloco individual de Idiomas (que contém "Inglês" e a barra) */
+.idiomas {
+    background-color: #f9f9f9; /* Fundo um pouco mais escuro que o card */
+    padding: 15px; /* Padding interno, ajuste se necessário */
+    border-radius: 15px;
+    border: 1px solid var(--cor-bordas);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transição para o hover */
+}
+
+/* Efeito de elevar no item de idioma */
+.idiomas:hover {
+    transform: translateY(-3px); /* Eleva um pouco menos que as seções maiores */
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1); /* Sombra mais acentuada no hover */
+}
+
+.interesses ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.interesses li {
+    background-color: var(--cor-acento); /* Lilás */
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-size: 0.95em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.interesses li:hover {
+    background-color: var(--cor-secundaria); /* Roxo vibrante no hover */
+    transform: translateY(-2px);
+}
+
+/* ==================================== */
+/* Seção Portfólio (Minhas Artes - Galeria, fora do layout de currículo) */
+/* ==================================== */
+#portfolio-artes {
+    padding: 70px 25px;
+    max-width: 95%; /* Mantém a largura máxima para a galeria, pode ajustar se quiser mais largura */
+    margin: 40px auto; /* Espaço e centralização */
+    background-color: var(--cor-fundo-card);
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid var(--cor-bordas);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efeito de elevar para a seção de artes */
+}
+
+#portfolio-artes:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--cor-bordas);
+}
+
+.portfolio-item:hover {
+    transform: translateY(-8px) rotate(-1deg);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 280px; /* Altura fixa para uniformidade */
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.1);
+}
+
+.portfolio-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(var(--cor-secundaria-rgb), 0.8);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease, background 0.3s ease;
+    font-size: 1.5em;
+    font-family: 'Fredoka One', cursive;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    border-radius: 18px;
+}
+
+.portfolio-item:hover .overlay {
+    opacity: 1;
+    background: rgba(var(--cor-secundaria-rgb), 0.9);
+}
+
+/* ==================================== */
+/* Modal para Visualização de Imagem */
+/* ==================================== */
+.modal {
+    display: none; /* ESSENCIAL: Escondido por padrão, mostrado por JS */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.85);
+    /* Removido 'display: flex;' aqui - JS é responsável por isso */
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    animation: fadeInModal 0.3s ease-out;
+}
+
+/* Animação de entrada do modal */
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 15px;
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    border: 5px solid #fff;
+    transform: scale(0.9);
+    animation: zoomInModal 0.3s ease-out forwards;
+}
+
+/* Animação de zoom da imagem no modal */
+@keyframes zoomInModal {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+#caption {
+    margin-top: 25px;
+    text-align: center;
+    color: #f0f0f0;
+    font-size: 1.4em;
+    font-family: 'Kalam', cursive;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.close-button {
+    position: absolute;
+    top: 25px;
+    right: 40px;
+    color: #fff;
+    font-size: 45px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--cor-acento);
+    transform: scale(1.1);
+}
+
+/* ==================================== */
+/* Seção Contato (conteúdo específico dentro do bloco) */
+/* ==================================== */
+.contato-info {
+    text-align: center;
+    font-size: 1.2em;
+    line-height: 1.8;
+    /* Removido padding, border, box-shadow aqui, pois já estão no .curriculum-layout .contato-info */
+}
+
+.contato-info p {
+    margin-bottom: 12px;
+    color: var(--cor-primaria);
+}
+
+.contato-info a {
+    font-weight: bold;
+    color: var(--cor-secundaria);
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.contato-info a:hover {
+    color: var(--cor-acento);
+    text-decoration: underline;
+    transform: translateY(-2px);
+}
+
+/* ==================================== */
+/* Footer */
+/* ==================================== */
+footer {
+    background-color: var(--cor-primaria);
+    color: #fff;
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 60px;
+    font-size: 1em;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+}
+
+/* ==================================== */
+/* Responsividade (Media Queries) */
+/* ==================================== */
+
+/* Telas maiores que 900px */
+@media (min-width: 901px) {
+    /* Ajustes específicos para telas maiores, se necessário */
+    /* .curriculum-layout { max-width: 1400px; } */ /* Pode ajustar se quiser que o layout ocupe AINDA mais em monitores muito largos */
+}
+
+/* Telas até 900px (Tablets e alguns laptops menores) */
+@media (max-width: 900px) {
+    /* Hero Section */
+    .hero h1 {
+        font-size: 4em;
+    }
+    .hero p {
+        font-size: 1.5em;
+    }
+
+    /* General Sections (containers) */
+    .section-container {
+        margin: 30px auto;
+        padding: 50px 20px;
+    }
+
+    /* Curriculum Layout (two columns) */
+    .curriculum-layout {
+        flex-direction: column; /* Em telas menores, as colunas empilham */
+        padding: 20px;
+        gap: 20px;
+        max-width: 90%; /* Ajuste a largura máxima para celulares */
+    }
+
+    .coluna-esquerda,
+    .coluna-direita {
+        min-width: unset; /* Remove o min-width para telas pequenas */
+        width: 100%; /* Ocupa a largura total */
+        gap: 20px; /* Espaço entre as seções dentro da coluna empilhada */
+    }
+
+    /* Inner sections inside curriculum-layout */
+    .curriculum-layout .sobre-mim-content,
+    .curriculum-layout .educacao-experiencia-grid,
+    .curriculum-layout .habilidades-grid,
+    .curriculum-layout .idiomas-interesses-wrapper,
+    .curriculum-layout .contato-info {
+        padding: 25px; /* Ajuste o padding para telas menores */
+    }
+
+    /* Photo in "Sobre Mim" */
+    .foto-artista img {
+        max-width: 280px;
+    }
+
+    /* Portfolio Arts Section */
+    #portfolio-artes {
+        padding: 50px 20px;
+    }
+
+    /* Ajuste para o hero-portfolio em telas menores */
+    .hero-portfolio {
+        margin-bottom: 15px;
+    }
+    .banner-capa {
+        height: 200px;
+    }
+}
+
+/* Telas até 600px (Celulares grandes e tablets pequenos) */
+@media (max-width: 600px) {
+    /* Hero Section */
+    .hero h1 {
+        font-size: 3em;
+    }
+    .hero p {
+        font-size: 1.2em;
+    }
+    .btn-scroll {
+        padding: 12px 25px;
+        font-size: 1.1em;
+    }
+
+    /* Navbar */
+    .navbar {
+        padding: 15px 0;
+    }
+    .nav-links {
+        flex-direction: column; /* Links da navegação em coluna */
+        gap: 15px;
+    }
+    .nav-links li {
+        margin: 0;
+    }
+
+    /* Section Titles */
+    .section-title {
+        font-size: 2em;
+        gap: 10px;
+    }
+    .section-title::before,
+    .section-title::after {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Portfolio Grid */
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* Uma coluna para as artes */
+    }
+    .portfolio-item img {
+        height: 220px; /* Altura menor para as miniaturas */
+    }
+
+    /* Modal */
+    .modal-content {
+        max-width: 95%;
+        max-height: 85vh;
+    }
+    .close-button {
+        font-size: 35px;
+        top: 15px;
+        right: 25px;
+    }
+
+    /* Ajuste para o hero-portfolio em telas menores */
+    .hero-portfolio {
+        margin-bottom: 10px;
+    }
+    .banner-capa {
+        height: 150px;
+    }
+}
+
+/* Telas até 400px (Celulares menores) */
+@media (max-width: 400px) {
+    /* Hero Section */
+    .hero h1 {
+        font-size: 2.2em;
+    }
+    .hero p {
+        font-size: 1em;
+    }
+
+    /* General Sections (containers) */
+    .section-container {
+        padding: 30px 15px;
+    }
+
+    /* Inner sections inside curriculum-layout */
+    .curriculum-layout .sobre-mim-content,
+    .curriculum-layout .educacao-experiencia-grid,
+    .curriculum-layout .habilidades-grid,
+    .curriculum-layout .idiomas-interesses-wrapper,
+    .curriculum-layout .contato-info {
+        padding: 20px; /* Reduzir ainda mais o padding para telas muito pequenas */
+    }
+
+    /* Individual items */
+    .habilidade-item {
+        padding: 15px;
+    }
+    .interesses li {
+        padding: 8px 15px;
+        font-size: 0.85em;
+    }
+    .cartao-identificacao {
+        font-size: 1em;
+        padding: 8px 15px;
+    }
+}
