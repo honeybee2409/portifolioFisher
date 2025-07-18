@@ -35,7 +35,7 @@ body {
     line-height: 1.6;
     color: var(--cor-texto);
     background-color: var(--cor-fundo); /* O novo azul lavanda */
-    overflow-x: hidden; /* Evita scroll horizontal indesejado, mas pode ser necessário no layout de 2 colunas forçado */
+    overflow-x: hidden; /* Evita scroll horizontal indesejado */
 }
 
 a {
@@ -786,256 +786,198 @@ footer {
 /* Responsividade (Media Queries) */
 /* ==================================== */
 
-/* Telas maiores que 900px */
+/* Telas maiores que 900px (Desktop / Laptop) */
 @media (min-width: 901px) {
-    /* Ajustes específicos para telas maiores, se necessário */
-    /* .curriculum-layout { max-width: 1400px; } */ /* Pode ajustar se quiser que o layout ocupe AINDA mais em monitores muito largos */
+    /* Mantém o layout de duas colunas padrão para desktop */
+    .curriculum-layout {
+        flex-direction: row;
+        flex-wrap: nowrap; /* Não quebra linha em desktop */
+        justify-content: center;
+    }
+    .coluna-esquerda {
+        flex: 1;
+        min-width: 300px;
+        width: auto;
+    }
+    .coluna-direita {
+        flex: 2;
+        min-width: 450px;
+        width: auto;
+    }
+    /* Certifique-se de que nenhum item interno está com display: flex ou grid que quebre o layout aqui */
 }
 
-/* Telas até 900px (Tablets e alguns laptops menores) */
+/* Telas de 601px até 900px (Tablets em modo paisagem / Alguns tablets menores) */
 @media (max-width: 900px) {
     /* Hero Section */
-    .hero h1 {
-        font-size: 4em;
-    }
-    .hero p {
-        font-size: 1.5em;
-    }
+    .hero h1 { font-size: 4em; }
+    .hero p { font-size: 1.5em; }
 
     /* General Sections (containers) */
-    .section-container {
-        margin: 30px auto;
-        padding: 50px 20px;
-    }
+    .section-container { margin: 30px auto; padding: 50px 20px; }
 
-    /* Curriculum Layout (two columns) - MANTER LAYOUT DE DUAS COLUNAS */
+    /* LAYOUT DE CURRÍCULO PARA TABLETS: Sobre Mim (coluna esquerda) acima, Educação e Experiência lado a lado */
     .curriculum-layout {
-        flex-direction: row; /* FORÇA LADO A LADO */
-        flex-wrap: wrap; /* Permite quebrar linha se o conteúdo não couber perfeitamente */
-        justify-content: center; /* Centraliza as colunas se houver espaço */
+        flex-direction: column; /* As grandes colunas (esquerda e direita) se empilham */
+        flex-wrap: nowrap;
+        justify-content: flex-start;
         padding: 20px;
         gap: 20px;
-        max-width: 95%; /* Mantém a largura expandida */
+        max-width: 95%; /* Ocupa a maior parte da largura */
     }
 
-    .coluna-esquerda,
+    .coluna-esquerda {
+        min-width: unset; /* Remove min-width fixo */
+        width: 100%; /* Ocupa 100% da largura do .curriculum-layout */
+        gap: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
     .coluna-direita {
-        min-width: 45%; /* Cada coluna tenta ocupar 45% do espaço */
-        width: auto; /* Deixa o flexbox decidir a largura */
-        gap: 20px; /* Espaço entre as seções dentro da coluna */
-        /* Pode ser necessário ajustar min-width/width e os font-sizes dos textos internos */
+        min-width: unset; /* Remove min-width fixo */
+        width: 100%; /* Ocupa 100% da largura do .curriculum-layout */
+        gap: 20px;
+        display: flex; /* Torna a coluna direita flexível para organizar seus conteúdos */
+        flex-direction: column; /* Por padrão, filhos da coluna direita se empilham */
     }
     
-    /* Inner sections inside curriculum-layout */
+    /* Regra chave: Faz os grids de Educação e Experiência ficarem com 2 colunas */
+    /* O .educacao-experiencia-grid é o container dos .item-lista ("Ed. Média", "Ed. Superior", etc.) */
+    .educacao-experiencia-grid {
+        display: grid; /* Usa grid para melhor controle de colunas internas */
+        grid-template-columns: repeat(auto-fit, minmax(calc(50% - 15px), 1fr)); /* Duas colunas quase 50% */
+        gap: 15px; /* Espaçamento entre as colinhas internas */
+        /* Certifique-se de que este grid esteja ativo apenas aqui e não em telas menores se quiser que empilhem */
+    }
+
+    /* Inner sections inside curriculum-layout - Ajustes gerais */
+    .curriculum-layout .sobre-mim-content,
+    .curriculum-layout .educacao-experiencia-grid, /* Adicionado para receber padding e fundo */
+    .curriculum-layout .habilidades-grid,
+    .curriculum-layout .idiomas-interesses-wrapper,
+    .curriculum-layout .contato-info {
+        padding: 25px; /* Padding ajustado para cada bloco de conteúdo */
+    }
+
+    /* Foto da artista em "Sobre Mim" */
+    .foto-artista img { max-width: 200px; }
+    
+    /* Tamanhos de fonte para o conteúdo interno em mobile */
+    .texto-sobre-mim p, .info-adicional p, .item-lista p, .item-lista ul li,
+    .habilidade-item span, .idiomas span, .interesses li, .contato-info p { font-size: 0.9em; }
+    
+    /* Títulos de seção interna em mobile */
+    .curriculum-layout .section-title { font-size: 1.8em; margin-bottom: 20px; text-align: center; justify-content: center; }
+    .curriculum-layout .section-title::before, .curriculum-layout .section-title::after { width: 18px; height: 18px; }
+
+    /* Portfolio Arts Section */
+    #portfolio-artes { padding: 50px 20px; }
+
+    /* Ajuste para o hero-portfolio em telas menores */
+    .hero-portfolio { margin-bottom: 15px; }
+    .banner-capa { height: auto; padding: 15px 10px; min-height: 80px; }
+    .banner-capa img { max-width: 70%; }
+}
+
+/* Telas até 600px (Celulares) */
+/* Aqui, todos os blocos internos devem se empilhar para melhor legibilidade */
+@media (max-width: 600px) {
+    /* Hero Section */
+    .hero h1 { font-size: 3em; }
+    .hero p { font-size: 1.2em; }
+    .btn-scroll { padding: 12px 25px; font-size: 1.1em; }
+
+    /* Navbar */
+    .navbar { padding: 15px 0; }
+    .nav-links { flex-direction: column; gap: 15px; }
+    .nav-links li { margin: 0; }
+
+    /* Section Titles */
+    .section-title { /* Títulos principais, como "Minhas Artes" */
+        font-size: 2em;
+        gap: 10px;
+    }
+    .section-title::before, .section-title::after { width: 18px; height: 18px; }
+
+    /* Portfolio Grid */
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .portfolio-item img { height: 220px; }
+
+    /* Modal */
+    .modal-content { max-width: 95%; max-height: 85vh; }
+    .close-button { font-size: 35px; top: 15px; right: 25px; }
+
+    /* Ajuste para o hero-portfolio em telas menores */
+    .hero-portfolio { margin-bottom: 10px; padding: 10px 5px; min-height: 60px; }
+    .banner-capa img { max-width: 80%; }
+
+    /* LAYOUT DE CURRÍCULO PARA CELULARES: Todas as seções se empilham para telas pequenas */
+    .curriculum-layout {
+        flex-direction: column; /* As grandes colunas se empilham */
+        gap: 15px; /* Espaço reduzido */
+        padding: 15px; /* Padding reduzido */
+        max-width: 90%;
+    }
+    .coluna-esquerda,
+    .coluna-direita {
+        flex-direction: column; /* Conteúdo interno também empilhado */
+        gap: 15px; /* Espaço reduzido */
+        width: 100%; /* Ocupa largura total */
+    }
+
+    /* Regra chave: Garante que os grids de Educação e Experiência voltem a ter 1 coluna */
+    .educacao-experiencia-grid {
+        grid-template-columns: 1fr; /* Uma coluna apenas */
+        gap: 10px; /* Espaçamento ajustado */
+    }
+    .item-lista {
+        width: 100%; /* Força os itens a ocupar 100% da largura */
+    }
+
+    /* Inner sections inside curriculum-layout - Ajustes gerais para celular */
     .curriculum-layout .sobre-mim-content,
     .curriculum-layout .educacao-experiencia-grid,
     .curriculum-layout .habilidades-grid,
     .curriculum-layout .idiomas-interesses-wrapper,
     .curriculum-layout .contato-info {
-        padding: 20px; /* Ajuste o padding para telas menores para dar mais espaço */
+        padding: 20px; /* Padding ajustado para cada bloco de conteúdo em mobile */
     }
-
-    /* Photo in "Sobre Mim" */
-    .foto-artista img {
-        max-width: 200px; /* Reduz o tamanho da foto para caber melhor */
-    }
-    
-    /* Textos internos podem precisar ser menores para caber */
-    .texto-sobre-mim p,
-    .info-adicional p,
-    .item-lista p,
-    .item-lista ul li,
-    .habilidade-item span,
-    .idiomas span,
-    .interesses li,
-    .contato-info p {
-        font-size: 0.8em; /* Reduz o tamanho da fonte para tentar caber o texto */
-    }
-    
-    /* Títulos de seção interna podem precisar ser menores */
-    .curriculum-layout .section-title {
-        font-size: 1.5em;
-        margin-bottom: 15px;
-    }
-    .curriculum-layout .section-title::before,
-    .curriculum-layout .section-title::after {
-        width: 15px;
-        height: 15px;
-    }
-
-    /* Portfolio Arts Section */
-    #portfolio-artes {
-        padding: 50px 20px;
-    }
-
-    /* Ajuste para o hero-portfolio em telas menores */
-    .hero-portfolio {
-        margin-bottom: 15px;
-    }
-    .banner-capa {
-        height: auto; /* Permite que a altura se ajuste ao conteúdo */
-        padding: 15px 10px; /* Reduz padding */
-        min-height: 80px; /* Nova altura mínima */
-    }
-    .banner-capa img {
-        max-width: 70%; /* Ajuste o tamanho do logo para caber melhor */
-    }
-}
-
-/* Telas até 600px (Celulares grandes e tablets pequenos) */
-@media (max-width: 600px) {
-    /* Hero Section */
-    .hero h1 {
-        font-size: 3em;
-    }
-    .hero p {
-        font-size: 1.2em;
-    }
-    .btn-scroll {
-        padding: 12px 25px;
-        font-size: 1.1em;
-    }
-
-    /* Navbar */
-    .navbar {
-        padding: 15px 0;
-    }
-    .nav-links {
-        flex-direction: column; /* Links da navegação ainda empilham para facilitar o clique */
-        gap: 15px;
-    }
-    .nav-links li {
-        margin: 0;
-    }
-
-    /* Section Titles */
-    .section-title {
-        font-size: 2em;
-        gap: 10px;
-    }
-    .section-title::before,
-    .section-title::after {
-        width: 18px;
-        height: 18px;
-    }
-
-    /* Portfolio Grid */
-    .portfolio-grid {
-        grid-template-columns: 1fr; /* Uma coluna para as artes para celulares */
-    }
-    .portfolio-item img {
-        height: 220px; /* Altura menor para as miniaturas */
-    }
-
-    /* Modal */
-    .modal-content {
-        max-width: 95%;
-        max-height: 85vh;
-    }
-    .close-button {
-        font-size: 35px;
-        top: 15px;
-        right: 25px;
-    }
-
-    /* Ajuste para o hero-portfolio em telas menores */
-    .hero-portfolio {
-        margin-bottom: 10px;
-        padding: 10px 5px; /* Reduz ainda mais o padding */
-        min-height: 60px; /* Altura mínima para celulares pequenos */
-    }
-    .banner-capa img {
-        max-width: 80%; /* Ajuste o tamanho do logo para caber melhor */
-    }
-
-    /* Textos internos podem precisar ser AINDA menores para caber */
-    .texto-sobre-mim p,
-    .info-adicional p,
-    .item-lista p,
-    .item-lista ul li,
-    .habilidade-item span,
-    .idiomas span,
-    .interesses li,
-    .contato-info p {
-        font-size: 0.7em; /* Texto muito pequeno */
-    }
-    .curriculum-layout .section-title {
-        font-size: 1.2em;
-        margin-bottom: 10px;
-    }
-    .curriculum-layout .section-title::before,
-    .curriculum-layout .section-title::after {
-        width: 12px;
-        height: 12px;
-    }
-    .cartao-identificacao {
-        font-size: 0.8em; /* Reduz o tamanho do texto do cartão de identificação */
-        padding: 8px 10px;
-    }
-    .foto-artista img {
-        max-width: 150px; /* Reduz ainda mais o tamanho da foto */
-    }
+    /* Textos internos em celulares */
+    .texto-sobre-mim p, .info-adicional p, .item-lista p, .item-lista ul li,
+    .habilidade-item span, .idiomas span, .interesses li, .contato-info p { font-size: 0.8em; }
+    .curriculum-layout .section-title { font-size: 1.5em; margin-bottom: 15px; }
+    .curriculum-layout .section-title::before, .curriculum-layout .section-title::after { width: 15px; height: 15px; }
+    .cartao-identificacao { font-size: 0.9em; padding: 8px 10px; margin-top: -25px; }
+    .foto-artista img { max-width: 150px; }
 }
 
 /* Telas até 400px (Celulares menores) */
 @media (max-width: 400px) {
     /* Hero Section */
-    .hero h1 {
-        font-size: 2.2em;
-    }
-    .hero p {
-        font-size: 1em;
-    }
+    .hero h1 { font-size: 2.2em; }
+    .hero p { font-size: 1em; }
 
     /* General Sections (containers) */
-    .section-container {
-        padding: 30px 15px;
-    }
+    .section-container { padding: 30px 15px; }
 
     /* Inner sections inside curriculum-layout */
     .curriculum-layout .sobre-mim-content,
     .curriculum-layout .educacao-experiencia-grid,
     .curriculum-layout .habilidades-grid,
     .curriculum-layout .idiomas-interesses-wrapper,
-    .curriculum-layout .contato-info {
-        padding: 15px; /* Reduzir ainda mais o padding */
-    }
+    .curriculum-layout .contato-info { padding: 15px; }
 
     /* Individual items */
-    .habilidade-item {
-        padding: 10px;
-    }
-    .interesses li {
-        padding: 6px 10px;
-        font-size: 0.7em;
-    }
-    .cartao-identificacao {
-        font-size: 0.7em;
-        padding: 5px 8px;
-        margin-top: -20px;
-    }
-    .foto-artista img {
-        max-width: 120px;
-    }
+    .habilidade-item { padding: 10px; }
+    .interesses li { padding: 6px 10px; font-size: 0.75em; }
+    .cartao-identificacao { font-size: 0.8em; padding: 5px 8px; margin-top: -20px; }
+    .foto-artista img { max-width: 120px; }
 
-    /* Fontes para o layout de duas colunas forçado */
-    .texto-sobre-mim p,
-    .info-adicional p,
-    .item-lista p,
-    .item-lista ul li,
-    .habilidade-item span,
-    .idiomas span,
-    .interesses li,
-    .contato-info p {
-        font-size: 0.6em; /* Fontes MUITO PEQUENAS em celulares menores */
-    }
-    .curriculum-layout .section-title {
-        font-size: 1em;
-        gap: 5px;
-    }
-    .curriculum-layout .section-title::before,
-    .curriculum-layout .section-title::after {
-        width: 10px;
-        height: 10px;
-    }
+    /* Fontes para o layout empilhado (ainda menores para garantir que caibam bem) */
+    .texto-sobre-mim p, .info-adicional p, .item-lista p, .item-lista ul li,
+    .habilidade-item span, .idiomas span, .contato-info p { font-size: 0.7em; }
+    .curriculum-layout .section-title { font-size: 1.2em; gap: 8px; margin-bottom: 10px; }
+    .curriculum-layout .section-title::before, .curriculum-layout .section-title::after { width: 10px; height: 10px; }
+    .item-lista h3 { font-size: 1em; }
 }
