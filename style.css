@@ -35,7 +35,7 @@ body {
     line-height: 1.6;
     color: var(--cor-texto);
     background-color: var(--cor-fundo); /* O novo azul lavanda */
-    overflow-x: hidden; /* Evita scroll horizontal indesejado */
+    overflow-x: hidden; /* Evita scroll horizontal indesejado, mas pode ser necessário no layout de 2 colunas forçado */
 }
 
 a {
@@ -208,7 +208,7 @@ ul {
 }
 
 .banner-capa img {
-    max-width: 80%; /* **AJUSTE CRÍTICO AQUI:** Limita a largura máxima da imagem (80% da div.banner-capa) */
+    max-width: 80%; /* Limita a largura máxima da imagem (80% da div.banner-capa) */
     height: auto; /* Mantém a proporção da imagem */
     display: block; /* Remove espaço extra abaixo da imagem */
     margin: 0 auto; /* Centraliza a imagem horizontalmente */
@@ -808,33 +808,59 @@ footer {
         padding: 50px 20px;
     }
 
-    /* Curriculum Layout (two columns) */
+    /* Curriculum Layout (two columns) - MANTER LAYOUT DE DUAS COLUNAS */
     .curriculum-layout {
-        flex-direction: column; /* Em telas menores, as colunas empilham */
+        flex-direction: row; /* FORÇA LADO A LADO */
+        flex-wrap: wrap; /* Permite quebrar linha se o conteúdo não couber perfeitamente */
+        justify-content: center; /* Centraliza as colunas se houver espaço */
         padding: 20px;
         gap: 20px;
-        max-width: 90%; /* Ajuste a largura máxima para celulares */
+        max-width: 95%; /* Mantém a largura expandida */
     }
 
     .coluna-esquerda,
     .coluna-direita {
-        min-width: unset; /* Remove o min-width para telas pequenas */
-        width: 100%; /* Ocupa a largura total */
-        gap: 20px; /* Espaço entre as seções dentro da coluna empilhada */
+        min-width: 45%; /* Cada coluna tenta ocupar 45% do espaço */
+        width: auto; /* Deixa o flexbox decidir a largura */
+        gap: 20px; /* Espaço entre as seções dentro da coluna */
+        /* Pode ser necessário ajustar min-width/width e os font-sizes dos textos internos */
     }
-
+    
     /* Inner sections inside curriculum-layout */
     .curriculum-layout .sobre-mim-content,
     .curriculum-layout .educacao-experiencia-grid,
     .curriculum-layout .habilidades-grid,
     .curriculum-layout .idiomas-interesses-wrapper,
     .curriculum-layout .contato-info {
-        padding: 25px; /* Ajuste o padding para telas menores */
+        padding: 20px; /* Ajuste o padding para telas menores para dar mais espaço */
     }
 
     /* Photo in "Sobre Mim" */
     .foto-artista img {
-        max-width: 280px;
+        max-width: 200px; /* Reduz o tamanho da foto para caber melhor */
+    }
+    
+    /* Textos internos podem precisar ser menores para caber */
+    .texto-sobre-mim p,
+    .info-adicional p,
+    .item-lista p,
+    .item-lista ul li,
+    .habilidade-item span,
+    .idiomas span,
+    .interesses li,
+    .contato-info p {
+        font-size: 0.8em; /* Reduz o tamanho da fonte para tentar caber o texto */
+    }
+    
+    /* Títulos de seção interna podem precisar ser menores */
+    .curriculum-layout .section-title {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+    .curriculum-layout .section-title::before,
+    .curriculum-layout .section-title::after {
+        width: 15px;
+        height: 15px;
     }
 
     /* Portfolio Arts Section */
@@ -847,7 +873,12 @@ footer {
         margin-bottom: 15px;
     }
     .banner-capa {
-        height: 200px;
+        height: auto; /* Permite que a altura se ajuste ao conteúdo */
+        padding: 15px 10px; /* Reduz padding */
+        min-height: 80px; /* Nova altura mínima */
+    }
+    .banner-capa img {
+        max-width: 70%; /* Ajuste o tamanho do logo para caber melhor */
     }
 }
 
@@ -870,7 +901,7 @@ footer {
         padding: 15px 0;
     }
     .nav-links {
-        flex-direction: column; /* Links da navegação em coluna */
+        flex-direction: column; /* Links da navegação ainda empilham para facilitar o clique */
         gap: 15px;
     }
     .nav-links li {
@@ -890,7 +921,7 @@ footer {
 
     /* Portfolio Grid */
     .portfolio-grid {
-        grid-template-columns: 1fr; /* Uma coluna para as artes */
+        grid-template-columns: 1fr; /* Uma coluna para as artes para celulares */
     }
     .portfolio-item img {
         height: 220px; /* Altura menor para as miniaturas */
@@ -910,9 +941,39 @@ footer {
     /* Ajuste para o hero-portfolio em telas menores */
     .hero-portfolio {
         margin-bottom: 10px;
+        padding: 10px 5px; /* Reduz ainda mais o padding */
+        min-height: 60px; /* Altura mínima para celulares pequenos */
     }
-    .banner-capa {
-        height: 150px;
+    .banner-capa img {
+        max-width: 80%; /* Ajuste o tamanho do logo para caber melhor */
+    }
+
+    /* Textos internos podem precisar ser AINDA menores para caber */
+    .texto-sobre-mim p,
+    .info-adicional p,
+    .item-lista p,
+    .item-lista ul li,
+    .habilidade-item span,
+    .idiomas span,
+    .interesses li,
+    .contato-info p {
+        font-size: 0.7em; /* Texto muito pequeno */
+    }
+    .curriculum-layout .section-title {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+    .curriculum-layout .section-title::before,
+    .curriculum-layout .section-title::after {
+        width: 12px;
+        height: 12px;
+    }
+    .cartao-identificacao {
+        font-size: 0.8em; /* Reduz o tamanho do texto do cartão de identificação */
+        padding: 8px 10px;
+    }
+    .foto-artista img {
+        max-width: 150px; /* Reduz ainda mais o tamanho da foto */
     }
 }
 
@@ -937,19 +998,44 @@ footer {
     .curriculum-layout .habilidades-grid,
     .curriculum-layout .idiomas-interesses-wrapper,
     .curriculum-layout .contato-info {
-        padding: 20px; /* Reduzir ainda mais o padding para telas muito pequenas */
+        padding: 15px; /* Reduzir ainda mais o padding */
     }
 
     /* Individual items */
     .habilidade-item {
-        padding: 15px;
+        padding: 10px;
     }
     .interesses li {
-        padding: 8px 15px;
-        font-size: 0.85em;
+        padding: 6px 10px;
+        font-size: 0.7em;
     }
     .cartao-identificacao {
+        font-size: 0.7em;
+        padding: 5px 8px;
+        margin-top: -20px;
+    }
+    .foto-artista img {
+        max-width: 120px;
+    }
+
+    /* Fontes para o layout de duas colunas forçado */
+    .texto-sobre-mim p,
+    .info-adicional p,
+    .item-lista p,
+    .item-lista ul li,
+    .habilidade-item span,
+    .idiomas span,
+    .interesses li,
+    .contato-info p {
+        font-size: 0.6em; /* Fontes MUITO PEQUENAS em celulares menores */
+    }
+    .curriculum-layout .section-title {
         font-size: 1em;
-        padding: 8px 15px;
+        gap: 5px;
+    }
+    .curriculum-layout .section-title::before,
+    .curriculum-layout .section-title::after {
+        width: 10px;
+        height: 10px;
     }
 }
