@@ -6,19 +6,19 @@
 
 /* Variáveis CSS para cores e propriedades reutilizáveis */
 :root {
-    /* Novas Cores Baseadas na Imagem (Roxo suave e Azul Lavanda) */
-    --cor-fundo: #E6E6FA; /* Azul Lavanda claro para o fundo principal (background do body) */
-    --cor-primaria: #5A4A7A; /* Roxo escuro para texto principal e elementos fortes */
-    --cor-secundaria: #8A2BE2; /* Roxo vibrante para destaques e links */
-    --cor-acento: #DDA0DD; /* Lilás/Púrpura suave para acentos (botões, diamantes, barras de progresso) */
-    --cor-texto: #4A4A4A; /* Cinza escuro para textos secundários para boa legibilidade */
-    --cor-fundo-card: #FFFFFF; /* Branco puro para fundos de cartões/seções (contraste) */
-    --cor-bordas: #C0C0D9; /* Tom de cinza-azulado suave para bordas (combina com o fundo lavanda) */
-    --cor-barra-progresso-fundo: #F5F5FC; /* Um azul/cinza muito claro para o fundo das barras */
-    --cor-barra-progresso: #AA7EEA; /* Um roxo/lilás mais escuro e visível para o preenchimento das barras */
+    /* NOVAS CORES HOMOGÊNEAS DA IMAGEM E CÓDIGO FORNECIDOS */
+    --cor-fundo: #E8C7A2; /* 1. Bege do fundo principal (papelão claro) */
+    --cor-fundo-card: #F7EAC7; /* 2. Bege amarelado do papel de caderno */
+    --cor-primaria: #5E3C1B; /* 3. Marrom do texto "Portifólio" e títulos principais */
+    --cor-secundaria: #B63F32; /* 4. Vermelho dos frutos - para links e destaques fortes */
+    --cor-acento: #DA8C49; /* 6. Laranja claro (detalhes no papel e sombra) - para acentos e hovers */
+    --cor-texto: #5E3C1B; /* Marrom escuro para a maioria dos textos */
+    --cor-bordas: #C0A17D; /* Um tom de bege/marrom suave para bordas, derivado do fundo */
+    --cor-barra-progresso-fundo: #F0E5D0; /* Um bege mais claro para o fundo das barras */
+    --cor-barra-progresso: #DA8C49; /* Laranja para o preenchimento das barras */
 
-    /* Variável RGB para uso com transparência no overlay (CORRIGIDO) */
-    --cor-secundaria-rgb: 138, 43, 226; /* RGB de #8A2BE2 */
+    /* Variável RGB para uso com transparência no overlay (agora baseada na --cor-secundaria) */
+    --cor-secundaria-rgb: 182, 63, 50; /* RGB de #B63F32 (Vermelho dos frutos) */
 }
 
 /* ==================================== */
@@ -34,18 +34,18 @@ body {
     font-family: 'Open Sans', sans-serif;
     line-height: 1.6;
     color: var(--cor-texto);
-    background-color: var(--cor-fundo); /* O novo azul lavanda */
+    background-color: var(--cor-fundo); /* O novo bege de papelão */
     overflow-x: hidden; /* Evita scroll horizontal indesejado */
 }
 
 a {
     text-decoration: none;
-    color: var(--cor-secundaria);
+    color: var(--cor-secundaria); /* Vermelho dos frutos */
     transition: color 0.3s ease; /* Transição suave para links */
 }
 
 a:hover {
-    color: var(--cor-acento);
+    color: var(--cor-acento); /* Laranja claro no hover */
 }
 
 ul {
@@ -57,7 +57,7 @@ ul {
 /* ==================================== */
 /* Este estilo é aplicado ao hero da landing page (index.html) */
 .hero {
-    background-color: var(--cor-secundaria); /* Roxo vibrante */
+    background-color: var(--cor-secundaria); /* Vermelho dos frutos */
     height: 100vh; /* Ocupa a altura total da viewport */
     display: flex; /* Torna-o um container flexível */
     justify-content: center; /* Centraliza horizontalmente o conteúdo */
@@ -89,7 +89,7 @@ ul {
     font-size: 5em;
     margin-bottom: 10px;
     letter-spacing: 3px;
-    text-shadow: 3px 3px var(--cor-acento); /* Dando um efeito 3D fofo com o lilás */
+    text-shadow: 3px 3px var(--cor-acento); /* Laranja claro para sombra/detalhe */
     animation: popIn 1s ease-out; /* Animação de "pipocar" */
 }
 
@@ -115,20 +115,20 @@ ul {
 
 /* Estilo do botão "Ver Portfólio" */
 .btn-scroll {
-    background-color: var(--cor-fundo); /* Azul lavanda para o botão */
-    color: var(--cor-primaria); /* Texto em roxo escuro */
+    background-color: var(--cor-fundo-card); /* Bege amarelado do papel de caderno */
+    color: var(--cor-primaria); /* Marrom do texto "Portifólio" */
     padding: 15px 30px;
     border-radius: 30px; /* Bem arredondado */
     transition: all 0.3s ease;
     font-weight: bold;
     font-size: 1.2em;
-    border: 2px solid var(--cor-acento); /* Borda fofa com lilás */
+    border: 2px solid var(--cor-acento); /* Laranja claro para borda */
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .btn-scroll:hover {
-    background-color: var(--cor-acento); /* Lilás no hover */
-    color: #fff; /* Texto branco no hover */
+    background-color: var(--cor-acento); /* Laranja claro no hover */
+    color: var(--cor-fundo-card); /* Bege amarelado no hover */
     transform: translateY(-3px); /* Leve levantamento */
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     text-decoration: none;
@@ -138,14 +138,14 @@ ul {
 /* Navegação (Navbar) - Apenas em portfolio.html */
 /* ==================================== */
 .navbar {
-    background-color: var(--cor-fundo-card); /* Branco puro */
+    background-color: var(--cor-fundo-card); /* Bege amarelado do papel de caderno */
     padding: 18px 0;
     text-align: center;
     position: sticky; /* Fica fixo no topo ao rolar */
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    border-bottom: 1px solid var(--cor-bordas);
+    border-bottom: 1px solid var(--cor-bordas); /* Borda em tom de bege/marrom suave */
     margin-top: 0px; /* Ajustado para não ter margem superior extra após o banner */
 }
 
@@ -159,7 +159,7 @@ ul {
 }
 
 .nav-links a {
-    color: var(--cor-primaria); /* Roxo escuro */
+    color: var(--cor-primaria); /* Marrom do texto "Portifólio" */
     font-weight: 600;
     font-size: 1.1em;
     position: relative;
@@ -174,7 +174,7 @@ ul {
     bottom: -5px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: var(--cor-acento); /* Lilás */
+    background-color: var(--cor-acento); /* Laranja claro */
     border-radius: 2px;
     transition: width 0.3s ease;
 }
@@ -189,7 +189,7 @@ ul {
 .hero-portfolio {
     width: 100%;
     position: relative;
-    background-color: var(--cor-fundo-card); /* Fundo branco ou cor para o banner */
+    background-color: var(--cor-fundo-card); /* Fundo bege amarelado do papel de caderno */
     padding: 30px 20px; /* Padding interno para dar espaço ao logo */
     margin-bottom: 20px;
     overflow: hidden;
@@ -228,10 +228,10 @@ ul {
     max-width: 95%; /* Ocupa quase toda a largura da página */
     margin: 40px auto; /* Centraliza o layout principal na página, mantendo margens laterais com branco ovo */
     padding: 20px; /* Padding interno para o layout geral */
-    background-color: var(--cor-fundo-card); /* Fundo branco para a "folha" do currículo */
+    background-color: var(--cor-fundo-card); /* Bege amarelado do papel de caderno */
     border-radius: 25px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    border: 1px solid var(--cor-bordas);
+    border: 1px solid var(--cor-bordas); /* Borda em tom de bege/marrom suave */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efeito de elevar na moldura principal */
 }
 
@@ -274,8 +274,8 @@ ul {
 .curriculum-layout .habilidades-grid,
 .curriculum-layout .idiomas-interesses-wrapper,
 .curriculum-layout .contato-info {
-    background-color: var(--cor-fundo-card); /* Branco para as caixas internas */
-    border: 1px solid var(--cor-bordas); /* Borda com tom de cinza-azulado */
+    background-color: var(--cor-fundo-card); /* Bege amarelado do papel de caderno */
+    border: 1px solid var(--cor-bordas); /* Borda em tom de bege/marrom suave */
     border-radius: 15px; /* Arredondamento para as caixas internas */
     padding: 30px; /* Padding interno para cada bloco */
     box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Sombra suave para os blocos */
@@ -288,7 +288,7 @@ ul {
 .curriculum-layout .educacao-experiencia-grid:hover,
 .curriculum-layout .habilidades-grid:hover,
 .curriculum-layout .idiomas-interesses-wrapper:hover,
-.curriculum-layout .contato-info:hover { /* Adicionado .contato-info:hover */
+.curriculum-layout .contato-info:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 40px rgba(0,0,0,0.12);
 }
@@ -300,6 +300,7 @@ ul {
     padding-top: 15px; /* Espaço antes do título, se necessário */
     text-align: left; /* Alinha o título à esquerda dentro do bloco */
     justify-content: flex-start; /* Alinha ícones e texto à esquerda */
+    color: var(--cor-primaria); /* Marrom */
 }
 
 
@@ -311,7 +312,7 @@ ul {
     font-family: 'Fredoka One', cursive;
     font-size: 2.8em;
     margin-bottom: 50px; /* Margem padrão para títulos de seções principais */
-    color: var(--cor-primaria); /* Roxo escuro */
+    color: var(--cor-primaria); /* Marrom */
     position: relative;
     display: flex;
     align-items: center;
@@ -326,7 +327,7 @@ ul {
     display: block;
     width: 25px; /* Tamanho do "diamante" */
     height: 25px;
-    background-color: var(--cor-acento); /* Lilás */
+    background-color: var(--cor-acento); /* Laranja claro */
     transform: rotate(45deg); /* Gira para parecer um diamante */
     border-radius: 5px; /* Levemente arredondado */
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
@@ -356,7 +357,7 @@ ul {
     height: auto;
     border-radius: 15px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    border: 6px solid var(--cor-acento); /* Borda com lilás */
+    border: 6px solid var(--cor-acento); /* Laranja claro para borda */
     transition: transform 0.3s ease;
 }
 
@@ -365,8 +366,8 @@ ul {
 }
 
 .cartao-identificacao {
-    background-color: var(--cor-fundo-card);
-    border: 2px solid var(--cor-bordas);
+    background-color: var(--cor-fundo-card); /* Bege amarelado */
+    border: 2px solid var(--cor-bordas); /* Bege/marrom suave */
     border-radius: 10px;
     padding: 10px 20px;
     margin-top: -30px;
@@ -374,7 +375,7 @@ ul {
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
     font-family: 'Kalam', cursive;
     font-size: 1.1em;
-    color: var(--cor-primaria); /* Roxo escuro */
+    color: var(--cor-primaria); /* Marrom */
     font-weight: 600;
     white-space: nowrap; /* Evita que o texto quebre */
 }
@@ -388,35 +389,35 @@ ul {
     flex: 1; /* Permite que o texto ocupe o espaço restante */
     min-width: 250px; /* Garante que não fique muito espremido */
     max-width: 100%; /* Adapta-se ao container pai */
-    background-color: #fcfcfc; /* Fundo quase branco */
+    background-color: var(--cor-fundo-card); /* Bege amarelado */
     padding: 25px; /* Padding interno */
     border-radius: 20px;
-    border: 1px dashed var(--cor-acento); /* Borda tracejada fofa com lilás */
+    border: 1px dashed var(--cor-acento); /* Borda tracejada fofa com laranja */
     box-shadow: inset 0 0 10px rgba(0,0,0,0.03);
 }
 
 .texto-sobre-mim p {
     margin-bottom: 15px;
     font-size: 1.1em;
-    color: var(--cor-texto); /* Cinza escuro */
+    color: var(--cor-texto); /* Marrom */
 }
 
 .info-adicional {
     margin-top: 20px;
-    border-top: 1px dashed var(--cor-bordas); /* Borda com tom de cinza-azulado */
+    border-top: 1px dashed var(--cor-bordas); /* Borda com tom de bege/marrom suave */
     padding-top: 20px;
 }
 
 .info-adicional p {
     margin-bottom: 8px;
     font-weight: 400;
-    color: var(--cor-primaria); /* Roxo escuro */
+    color: var(--cor-primaria); /* Marrom */
     font-size: 1.05em;
 }
 
 .info-adicional strong {
     font-weight: 700;
-    color: var(--cor-secundaria); /* Roxo vibrante */
+    color: var(--cor-secundaria); /* Vermelho dos frutos */
 }
 
 /* ==================================== */
@@ -430,10 +431,10 @@ ul {
 }
 
 .item-lista {
-    background-color: #fcfcfc; /* Fundo quase branco */
+    background-color: var(--cor-fundo-card); /* Bege amarelado */
     padding: 20px; /* Padding interno */
     border-radius: 15px;
-    border: 1px solid var(--cor-bordas); /* Borda com tom de cinza-azulado */
+    border: 1px solid var(--cor-bordas); /* Borda em tom de bege/marrom suave */
     box-shadow: 0 3px 10px rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transição individual para estes itens */
 }
@@ -445,14 +446,14 @@ ul {
 
 .item-lista h3 {
     font-family: 'Fredoka One', cursive;
-    color: var(--cor-secundaria); /* Roxo vibrante */
+    color: var(--cor-secundaria); /* Vermelho dos frutos */
     margin-bottom: 10px;
     font-size: 1.3em;
 }
 
 .item-lista p, .item-lista ul li {
     font-size: 0.95em;
-    color: var(--cor-texto); /* Cinza escuro */
+    color: var(--cor-texto); /* Marrom */
     margin-bottom: 5px;
 }
 
@@ -473,10 +474,10 @@ ul {
 }
 
 .habilidade-item {
-    background-color: #f9f9f9; /* Fundo um pouco mais escuro que o card */
+    background-color: var(--cor-fundo-card); /* Bege amarelado */
     padding: 15px; /* Padding interno */
     border-radius: 15px;
-    border: 1px solid var(--cor-bordas); /* Borda com tom de cinza-azulado */
+    border: 1px solid var(--cor-bordas); /* Borda em tom de bege/marrom suave */
     box-shadow: 0 3px 10px rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transição para o hover */
 }
@@ -491,11 +492,11 @@ ul {
     display: block;
     margin-bottom: 10px;
     font-weight: 600;
-    color: var(--cor-primaria); /* Roxo escuro */
+    color: var(--cor-primaria); /* Marrom */
 }
 
 .barra-progresso {
-    background-color: var(--cor-barra-progresso-fundo); /* Fundo da barra */
+    background-color: var(--cor-barra-progresso-fundo); /* Bege mais claro */
     height: 12px;
     border-radius: 6px;
     overflow: hidden;
@@ -504,7 +505,7 @@ ul {
 
 .barra-progresso div { /* Esta é a div interna que mostra o progresso */
     height: 100%;
-    background-color: var(--cor-barra-progresso); /* A cor vibrante do progresso */
+    background-color: var(--cor-barra-progresso); /* Laranja */
     border-radius: 6px;
     transition: width 0.8s ease-out;
     position: relative;
@@ -557,10 +558,10 @@ ul {
 
 /* Estilo para o bloco individual de Idiomas (que contém "Inglês" e a barra) */
 .idiomas {
-    background-color: #f9f9f9; /* Fundo um pouco mais escuro que o card */
+    background-color: var(--cor-fundo-card); /* Bege amarelado */
     padding: 15px; /* Padding interno, ajuste se necessário */
     border-radius: 15px;
-    border: 1px solid var(--cor-bordas);
+    border: 1px solid var(--cor-bordas); /* Borda em tom de bege/marrom suave */
     box-shadow: 0 3px 10px rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transição para o hover */
 }
@@ -578,8 +579,8 @@ ul {
 }
 
 .interesses li {
-    background-color: var(--cor-acento); /* Lilás */
-    color: #fff;
+    background-color: var(--cor-acento); /* Laranja claro */
+    color: var(--cor-primaria); /* Marrom */
     padding: 10px 18px;
     border-radius: 25px;
     font-size: 0.95em;
@@ -589,7 +590,7 @@ ul {
 }
 
 .interesses li:hover {
-    background-color: var(--cor-secundaria); /* Roxo vibrante no hover */
+    background-color: var(--cor-secundaria); /* Vermelho dos frutos no hover */
     transform: translateY(-2px);
 }
 
@@ -600,10 +601,10 @@ ul {
     padding: 70px 25px;
     max-width: 95%; /* Mantém a largura máxima para a galeria, pode ajustar se quiser mais largura */
     margin: 40px auto; /* Espaço e centralização */
-    background-color: var(--cor-fundo-card);
+    background-color: var(--cor-fundo-card); /* Bege amarelado */
     border-radius: 25px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-    border: 1px solid var(--cor-bordas);
+    border: 1px solid var(--cor-bordas); /* Bege/marrom suave */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efeito de elevar para a seção de artes */
 }
 
@@ -626,7 +627,7 @@ ul {
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid var(--cor-bordas);
+    border: 1px solid var(--cor-bordas); /* Bege/marrom suave */
 }
 
 .portfolio-item:hover {
@@ -652,7 +653,7 @@ ul {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(var(--cor-secundaria-rgb), 0.8);
+    background: rgba(var(--cor-secundaria-rgb), 0.8); /* Vermelho dos frutos com transparência */
     color: #fff;
     display: flex;
     justify-content: center;
@@ -736,7 +737,7 @@ ul {
 
 .close-button:hover,
 .close-button:focus {
-    color: var(--cor-acento);
+    color: var(--cor-acento); /* Laranja claro */
     transform: scale(1.1);
 }
 
@@ -752,17 +753,17 @@ ul {
 
 .contato-info p {
     margin-bottom: 12px;
-    color: var(--cor-primaria);
+    color: var(--cor-primaria); /* Marrom */
 }
 
 .contato-info a {
     font-weight: bold;
-    color: var(--cor-secundaria);
+    color: var(--cor-secundaria); /* Vermelho dos frutos */
     transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .contato-info a:hover {
-    color: var(--cor-acento);
+    color: var(--cor-acento); /* Laranja claro */
     text-decoration: underline;
     transform: translateY(-2px);
 }
@@ -771,7 +772,7 @@ ul {
 /* Footer */
 /* ==================================== */
 footer {
-    background-color: var(--cor-primaria);
+    background-color: var(--cor-primaria); /* Marrom */
     color: #fff;
     text-align: center;
     padding: 25px 0;
@@ -804,7 +805,11 @@ footer {
         min-width: 450px;
         width: auto;
     }
-    /* Certifique-se de que nenhum item interno está com display: flex ou grid que quebre o layout aqui */
+    /* Garante que o .educacao-experiencia-grid se comporta como grid de 2 colunas em desktop */
+    .educacao-experiencia-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
 }
 
 /* Telas de 601px até 900px (Tablets em modo paisagem / Alguns tablets menores) */
@@ -848,12 +853,11 @@ footer {
         display: grid; /* Usa grid para melhor controle de colunas internas */
         grid-template-columns: repeat(auto-fit, minmax(calc(50% - 15px), 1fr)); /* Duas colunas quase 50% */
         gap: 15px; /* Espaçamento entre as colinhas internas */
-        /* Certifique-se de que este grid esteja ativo apenas aqui e não em telas menores se quiser que empilhem */
     }
 
     /* Inner sections inside curriculum-layout - Ajustes gerais */
     .curriculum-layout .sobre-mim-content,
-    .curriculum-layout .educacao-experiencia-grid, /* Adicionado para receber padding e fundo */
+    .curriculum-layout .educacao-experiencia-grid,
     .curriculum-layout .habilidades-grid,
     .curriculum-layout .idiomas-interesses-wrapper,
     .curriculum-layout .contato-info {
