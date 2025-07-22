@@ -4,11 +4,11 @@
 /* Kalam para algo mais "escrito à mão" (se for o caso, para detalhes ou hero text secundário) */
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans:wght@300;400;600;700&family=Kalam:wght@300;400;700&display=swap');
 
-/* Variáveis CSS para cores e propriedades reutilizáveis */
+/* Variáveis CSS para cores e propriedades reutilizáveis - Baseadas na imagem titie.com e suas cores */
 :root {
     /* NOVAS CORES HOMOGÊNEAS DA IMAGEM E CÓDIGO FORNECIDOS */
     --cor-fundo: #E8C7A2; /* 1. Bege do fundo principal (papelão claro) */
-    --cor-fundo-card: #F7EAC7; /* 2. Bege amarelado do papel de caderno */
+    --cor-fundo-card: #F7EAC7; /* 2. Bege amarelado do papel de caderno (para o fundo da janela) */
     --cor-primaria: #5E3C1B; /* 3. Marrom do texto "Portifólio" e títulos principais */
     --cor-secundaria: #B63F32; /* 4. Vermelho dos frutos - para links e destaques fortes */
     --cor-acento: #DA8C49; /* 6. Laranja claro (detalhes no papel e sombra) - para acentos e hovers */
@@ -316,7 +316,7 @@ ul {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center; /* Centraliza o título fora do curriculum-layout */
+    justify-content: center; /* CENTRALIZADO AQUI: Garante que o título e os diamantes sejam centralizados */
     gap: 15px; /* Espaço entre o ícone e o texto */
 }
 
@@ -458,7 +458,7 @@ ul {
 }
 
 .item-lista ul {
-    list-style: disc;
+    list-style: disc; /* Garante marcadores de bolinha */
     padding-left: 20px;
     margin-top: 10px;
 }
@@ -576,6 +576,7 @@ ul {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+    justify-content: center;
 }
 
 .interesses li {
@@ -745,7 +746,7 @@ ul {
 /* Seção Contato (conteúdo específico dentro do bloco) */
 /* ==================================== */
 .contato-info {
-    text-align: center;
+    text-align: center; /* CENTRALIZADO AQUI */
     font-size: 1.2em;
     line-height: 1.8;
     /* Removido padding, border, box-shadow aqui, pois já estão no .curriculum-layout .contato-info */
@@ -810,6 +811,12 @@ footer {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 20px;
     }
+
+    /* Títulos de seção interna em desktop (mantendo o centralizado) */
+    .curriculum-layout .section-title {
+        text-align: center; /* Centraliza o texto */
+        justify-content: center; /* Centraliza ícones e texto */
+    }
 }
 
 /* Telas de 601px até 900px (Tablets em modo paisagem / Alguns tablets menores) */
@@ -871,7 +878,7 @@ footer {
     .texto-sobre-mim p, .info-adicional p, .item-lista p, .item-lista ul li,
     .habilidade-item span, .idiomas span, .interesses li, .contato-info p { font-size: 0.9em; }
     
-    /* Títulos de seção interna em mobile */
+    /* Títulos de seção interna em mobile (mantendo o centralizado) */
     .curriculum-layout .section-title { font-size: 1.8em; margin-bottom: 20px; text-align: center; justify-content: center; }
     .curriculum-layout .section-title::before, .curriculum-layout .section-title::after { width: 18px; height: 18px; }
 
@@ -901,6 +908,8 @@ footer {
     .section-title { /* Títulos principais, como "Minhas Artes" */
         font-size: 2em;
         gap: 10px;
+        text-align: center; /* Centralizado em mobile também */
+        justify-content: center; /* Centralizado em mobile também */
     }
     .section-title::before, .section-title::after { width: 18px; height: 18px; }
 
